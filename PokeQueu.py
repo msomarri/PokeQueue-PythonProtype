@@ -3,11 +3,12 @@ import pandas as pd
 Queue = []
 db = pd.read_csv("pokemon_data.csv")
 
-menu = "1: View All Pokemon\n" \
+menu = "1:View All Pokemon\n" \
        "2:Add Pokemon\n" \
        "3:View current Queue\n" \
        "4:Search\n" \
-       "5:Quit\n"
+       "5.Start Queue" \
+       "6:Quit\n"
 
 # Noramlly this stuff will handle by a db app
 def add(pknum):
@@ -17,7 +18,7 @@ def add(pknum):
         return
     Queue.append(search)
 def searchPk(pknum):
-    print(db.loc[db['dex number']] == int(pknum))
+    print(db.loc[db['dex number'] == int(pknum)])
     
 def viewPokemon():
     print(db[["dex number","pokemon"]].to_string(index=False))
@@ -27,12 +28,15 @@ def viewQueue():
     for items in Queue:
         print(items['pokemon'].to_string())
     print("=====================================")
+
+def startQueue():
+    pass
 print(" Welcome to PokeQueue.\nStart out by typing in the dex numbers that you want complete today")
 done = True
 
 while done:
     answer = input(menu)
-    if answer == "5":
+    if answer == "6":
         done = False
     if answer == "1":
         viewPokemon()
